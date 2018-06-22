@@ -1,0 +1,79 @@
+<!--
+//*********************************************************
+//
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+//
+//*********************************************************
+-->
+<Page
+    x:Class="SDKTemplate.Scenario3_ServerForeground"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:SDKTemplate"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="AttributeTemplate" x:DataType="local:BluetoothLEAttributeDisplay">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" MinWidth="100"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" Margin="5">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind Name}" Style="{StaticResource ListItemTextStyle}" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind AttributeDisplayType}" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="12,10,12,12">
+        <StackPanel>
+            <TextBlock Text="Calibration:" Style="{StaticResource SampleHeaderTextStyle}"/>
+            <TextBlock Text="Click your whiteboard with pen in the order seen in the picture below." Style="{StaticResource SampleHeaderTextStyle}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="Station Orientation" Style="{StaticResource SampleHeaderTextStyle}"/>
+                <RadioButton GroupName="stationSide" x:Name="LeftSide" IsChecked="True" Checked="{x:Bind onStationSide_Checked}">Left</RadioButton>
+                <RadioButton GroupName="stationSide" x:Name="RightSide" Checked="{x:Bind onStationSide_Checked}">Right</RadioButton>
+
+            </StackPanel>
+
+            <Canvas Width="800" Height="600" Background="White">
+                <Image x:Name="sensorImg" Source="Assets/boardset_maker_normal.png"  Stretch="None" Canvas.Left="0" Canvas.Top="200" 
+                       Margin="0,0,0,0" />
+                <Rectangle x:Name="deadZoneRect" Width="30" Height="600" Canvas.Left="70" Canvas.Top="0" Fill="#FFE8DEDE">
+                </Rectangle>
+                <Image x:Name="backImg" Source="Assets/board_set_width.png"  Stretch="Uniform" Canvas.Left="100" Canvas.Top="0" 
+                       Width="700" Height="600"
+                       Margin="0,0,0,0" />
+
+                <TextBlock  x:Name="deadZoneText" Foreground="#FF0C0101" Canvas.Left="70" Canvas.Top="49" Visibility="Visible">5cm</TextBlock>
+                <Ellipse x:Name="calNumber1ColorPre" Width="20" Height="20" Fill="#FFDF8C09" Canvas.Left="105" Canvas.Top="19"></Ellipse>
+                    <TextBlock x:Name="calNumber1Do" Foreground="#FF0C0101" Canvas.Left="110" Canvas.Top="19" Visibility="Visible">1</TextBlock>
+                    <TextBlock x:Name="calNumber1Check" Foreground="#FF0C0101" Canvas.Left="110" Canvas.Top="19" Visibility="Collapsed">V</TextBlock>
+                    <TextBlock x:Name="calNumber1Text" Foreground="#FF0C0101" Canvas.Left="140" Canvas.Top="19">Tap the upper left corner.</TextBlock>
+                <Ellipse x:Name="calNumber2ColorDo" Width="20" Height="20" Fill="#FFDF8C09" Canvas.Left="734" Canvas.Top="569"
+                         Visibility="Collapsed"></Ellipse>
+
+                <Ellipse x:Name="calNumber2ColorPre" Width="20" Height="20" Fill="#FFDFDFDF" Canvas.Left="734" Canvas.Top="567"></Ellipse>
+                <TextBlock x:Name="calNumber2Do" Foreground="#FF0C0101" Canvas.Left="739" Canvas.Top="569">2</TextBlock>
+                <TextBlock x:Name="calNumber2Check" Foreground="#FF0C0101" Canvas.Left="740" Canvas.Top="569">V</TextBlock>
+                <TextBlock x:Name="calNumber2Text" Foreground="#FF0C0101" Canvas.Left="739" Canvas.Top="569"
+                           Visibility="Collapsed">Tap the lower right corner.</TextBlock>
+                </Canvas>
+
+        </StackPanel>
+
+    </ScrollViewer>
+</Page>
