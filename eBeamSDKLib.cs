@@ -485,7 +485,7 @@ namespace SDKTemplate
                 else
                 {
                     m_nModelCode = rxdata[3];
-                    if (m_nModelCode == 6 || m_nModelCode == 5 || m_nModelCode == 4) // Smart Marker model code is 5
+                    if ( m_nModelCode == 5 || m_nModelCode == 4) // Smart Marker model code is 5
                     {
                         if (m_bConnect == false)
                         {
